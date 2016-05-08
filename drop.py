@@ -45,7 +45,7 @@ while not done:
         done = True
     
     #### FROM HERE ON IS DRAWN ON SCREEN
-    screen.fill(Colors.black)
+    screen.fill(Colors.white)
     env.update(screen, dropit)
         
     pg.display.flip()

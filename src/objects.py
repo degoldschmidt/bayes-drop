@@ -11,7 +11,7 @@ class Particle:
         self.dt = 0.5
         self.size = int(size)
         self.colour = color
-        self.thickness = 3
+        self.thickness = 12
         if fill:
             self.thickness = 0
     
@@ -61,19 +61,11 @@ class Occluder(pg.Rect):
     def display(self, screen):
         pg.draw.rect(screen, self.colour, self)
         
-class Cursor():
+class Cursor(Particle):
     
-    def __init__(self, pos, size, color):
-        assert len(pos)==2, "Argument pos is not twodimensional."
-        self.x = int(pos[0])
-        self.y = int(pos[1])
-        self.size = int(size)
-        self.colour = color
-        self.thickness = 12
+    def __init__(self, pos, size, color, fill):
+        Particle.__init__(self, pos, size, color, fill)
         self.stop = False
-        
-    def display(self, screen):
-        pg.draw.circle(screen, self.colour, (self.x, self.y), self.size, self.thickness)
         
     def update(self, screen, mouse):
         assert len(mouse)==2, "Argument pos is not twodimensional."

@@ -17,7 +17,7 @@ class Setup:
 
         ### Cursor defs
         cursor_height = self.height-50
-        self.cursor = Cursor((self.ccenter, cursor_height), 30, Colors.goal)
+        self.cursor = Cursor((self.ccenter, cursor_height), 30, Colors.goal, False)
 
         ### StartArea defs
         startA   = 50
@@ -26,12 +26,12 @@ class Setup:
 
         ### Droplet defs
         dropSize = 5
-        self.droplet  = Particle(self.startPos, dropSize, Colors.white, True)
+        self.droplet  = Particle(self.startPos, dropSize, Colors.black, True)
 
         ### Occluder defs
         self.occ = []
-        self.occ.append(Occluder((0,0), (self.width,5*self.height/12), Colors.occgray))
-        self.occ.append(Occluder((0,0), (self.width,4*self.height/12), Colors.occgray))
+        self.occ.append(Occluder((0,0), (self.width,5*self.height/12), Colors.occhell))
+        self.occ.append(Occluder((0,0), (self.width,4*self.height/12), Colors.occhell))
         self.occ[0].top = self.height/2+dropSize
         self.occ[1].bottom = self.height/2-dropSize
         
