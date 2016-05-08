@@ -4,10 +4,10 @@ Let the Bayes drop! This is a python-based framework for a coin drop sensorimoto
 ## Screenshots
 
 This is the experimental setup explained:
-![alt text](https://github.com/degoldschmidt/bayes-drop/raw/master/screenshots/setup.png "Experimental setup")
+![alt text](https://raw.githubusercontent.com/degoldschmidt/bayes-drop/master/screenshots/setup.png "Experimental setup")
 
 Result of an individual trial. We measure the performance by the deviation of the coin's' lateral position from the one of the cursor's.
-![alt text](https://github.com/degoldschmidt/bayes-drop/raw/master/screenshots/02.png "Error")
+![alt text](https://raw.githubusercontent.com/degoldschmidt/bayes-drop/master/screenshots/02.png "Error")
 
 ## References
 
