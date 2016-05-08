@@ -36,21 +36,26 @@ class Setup:
         self.occ[1].bottom = self.height/2-dropSize
         
         ### Trial state and variables
+        self.vstd = self.width/64
+        self.shiftmean = -self.width/8
+        self.shiftstd = self.width/16
         self.shifted = False
         self.dropit = False
         self.stop_trial = False
         self.shift = 0.0
         self.error = 0.0
         
-    def randshift(self, mean, std):
+    def randshift(self, screen):
         ### GAUSSIAN SHIFT
-        mu = -self.width/4
-        sigma = self.width/8
+        mu, sigma = self.shiftmean, self.shiftstd
         if self.droplet.y > self.occ[1].centery and not self.shifted:
             self.shift = np.random.normal(mu, sigma)
             print("Random shift drawn from N(", mu, ",", sigma, ") ->", self.shift)
             self.droplet.move((self.shift,0))
+            self.droplet.blur(screen, self.vstd)
             self.shifted = True
+        if self.droplet.y > self.occ[0].centery and self.shifted:
+            self.droplet.deblur()
         
     def reset(self):
         self.droplet.stop()
@@ -61,7 +66,7 @@ class Setup:
         keypress = True
         while keypress:
             for event in pg.event.get():
-                if event.type != pg.MOUSEBUTTONDOWN:
+                if event.type == pg.MOUSEBUTTONDOWN:
                     keypress = False
     
     def update(self, screen, click):
@@ -76,9 +81,9 @@ class Setup:
         ### Fall
         if self.dropit:
             self.droplet.fall(self.gacc)
-        ### Shift
-        self.randshift(0,0)
-        ### STOP CONDITION    
+        ### Shift+Blur
+        self.randshift(screen)
+        ### Stop condition    
         if self.droplet.y > self.cursor.y:
             self.stop_trial = True
             

@@ -12,11 +12,27 @@ class Particle:
         self.size = int(size)
         self.colour = color
         self.thickness = 12
+        self.blurred = False
         if fill:
             self.thickness = 0
+            
+    def blur(self, screen, std):
+        if std > 0.0:
+            self.blurred = True
+            self.randx = np.random.normal(self.x, std, 25)
+            for pos in self.randx:
+                pg.draw.circle(screen, self.colour, (int(pos), self.y), int(0.5*self.size), self.thickness)
+        
+    def deblur(self):
+        self.blurred = False
     
     def display(self, screen):
-        pg.draw.circle(screen, self.colour, (self.x, self.y), self.size, self.thickness)
+        if not self.blurred:
+            pg.draw.circle(screen, self.colour, (self.x, self.y), self.size, self.thickness)
+        else:
+            for pos in self.randx:
+                pg.draw.circle(screen, self.colour, (int(pos), self.y), int(0.5*self.size), self.thickness)
+           
     
     def fall(self, gacc):
         T = 0
