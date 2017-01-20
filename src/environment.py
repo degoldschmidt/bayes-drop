@@ -20,8 +20,9 @@ class Setup:
         self.cursor = Cursor((self.ccenter, cursor_height), 30, Colors.goal, False)
 
         ### StartArea defs
-        startA   = 50
-        self.startPos = (self.ccenter, startA)
+        startA   = 40
+        startY   = 130
+        self.startPos = (self.ccenter, startY)
         self.start    = Particle(self.startPos, startA, Colors.start, False)
 
         ### Droplet defs
